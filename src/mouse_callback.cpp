@@ -30,9 +30,10 @@ void MouseCB::onMouse(int event, int x, int y, int __attribute__((unused)) flags
 
     cv::Rodrigues(r_vec, r_vec);
 
-    cv::Mat trans;
-    cv::hconcat(r_vec, t_vec, trans);
-    std::cout << trans << std::endl;
+    cv::Mat trans_mat;
+    cv::hconcat(r_vec, t_vec, trans_mat);
+
+    std::cout << trans_mat << std::endl;
     cv::destroyAllWindows();
   }
 }
