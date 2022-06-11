@@ -6,7 +6,7 @@
 
 void MouseCB::onMouse(int event, int x, int y, int __attribute__((unused)) flags, void* param)
 {
-  auto* p_this = ((MouseCB*)param);
+  MouseCB* p_this = ((MouseCB*)param);
   static int count = 1;
   if (event == cv::EVENT_LBUTTONDOWN)
   {
@@ -24,7 +24,8 @@ void MouseCB::onMouse(int event, int x, int y, int __attribute__((unused)) flags
     p_this->points_3d_.emplace_back(cv::Point3d(50, 50, 0));
     p_this->points_3d_.emplace_back(cv::Point3d(50, -50, 0));
 
-    cv::solvePnP(p_this->points_3d_, p_this->points_2d_, p_this->cam_intrinsic_mat_k_, p_this->dist_coefficients_,
+    cv::solvePnP(p_this->points_3d_, p_this->points_2d_,
+                 p_this->cam_intrinsic_mat_k_, p_this->dist_coefficients_,
                  r_vec, t_vec, false, cv::SOLVEPNP_AP3P);
 
     cv::Rodrigues(r_vec, r_vec);
