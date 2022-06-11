@@ -1,0 +1,5 @@
+3D_points:  # Must be float (Ref: https://github.com/daniilidis-group/msckf_mono/issues/28)
+  p1: [-50.0, -50.0, 0.0]
+  p2: [-50.0, 50.0, 0.0]
+  p3: [50.0, 50.0, 0.0]
+  p4: [50.0, -50.0, 0.0]
