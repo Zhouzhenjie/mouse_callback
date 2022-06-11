@@ -19,6 +19,7 @@ class MouseCB
 {
 public:
   cv::Mat img_;
+  ros::NodeHandle parent_nh_;
   std::vector<cv::Point2d> points_2d_;
   std::vector<cv::Point3d> points_3d_;
   sensor_msgs::CameraInfo camera_info_;

@@ -66,7 +66,7 @@ void MouseCB::initialize(ros::NodeHandle& nh)
   dist_coefficients_ = camera_info_.D;
   ROS_INFO("Successfully read camera info.");
 
-  std::string img = this->template getParam<std::string>(nh, "img_path", "");
+  std::string img = this->template getParam<std::string>(parent_nh_, "img_path", "");
   img_ = cv::imread(img);
   points_3d_.clear();
   points_2d_.clear();
