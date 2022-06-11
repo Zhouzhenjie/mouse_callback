@@ -1,6 +1,8 @@
 <?xml version="1.0"?>
 <launch>
+    <arg name="img_path" default="/home/kaxns/Pictures/exposure_fused0.jpg"/>
     <node pkg="mouse_callback" type="mouse_callback" name="mouse_callback_node" output="screen">
         <rosparam file="$(find mouse_callback)/config/mouse_callback_config.yaml" command="load" />
+        <param name="img_path" value="$(arg img_path)"/>
     </node>
 </launch>
