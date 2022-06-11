@@ -20,10 +20,10 @@ void MouseCB::onMouse(int event, int x, int y, int flags, void *param)
             cv::Mat_<double> r_vec(3, 1);
             cv::Mat_<double> t_vec(3, 1);
 
-            ((MouseCB*)param)->points_3d_.emplace_back((-50, -50, 0));
-            ((MouseCB*)param)->points_3d_.emplace_back((-50, 50, 0));
-            ((MouseCB*)param)->points_3d_.emplace_back((50, 50, 0));
-            ((MouseCB*)param)->points_3d_.emplace_back((50, -50, 0));
+            ((MouseCB*)param)->points_3d_.emplace_back(cv::Point3d(-50, -50, 0));
+            ((MouseCB*)param)->points_3d_.emplace_back(cv::Point3d(-50, 50, 0));
+            ((MouseCB*)param)->points_3d_.emplace_back(cv::Point3d(50, 50, 0));
+            ((MouseCB*)param)->points_3d_.emplace_back(cv::Point3d(50, -50, 0));
 
             cv::solvePnP(((MouseCB*)param)->points_3d_, ((MouseCB*)param)->points_2d_,
                          ((MouseCB*)param)->cam_intrinsic_mat_k_, ((MouseCB*)param)->dist_coefficients_,
