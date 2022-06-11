@@ -46,14 +46,21 @@ MouseCB::MouseCB(ros::NodeHandle& nh)
 
 void MouseCB::initialize(ros::NodeHandle& nh)
 {
-  // TODO
-  cam_intrinsic_mat_k_ = (cv::Mat_<double>(3, 3) << 1265.55389, 0, 666.65908, 0, 1266.73808, 526.60665, 0, 0, 1);
-  dist_coefficients_ = std::vector<double>{ -0.214808, 0.127733, 0.000432, -0.000236, 0.000000 };
+  camera_info_manager::CameraInfoManager info_manager{nh};
+  info_manager.loadCameraInfo("");
+  camera_info_ = info_manager.getCameraInfo();
+
+  cam_intrinsic_mat_k_.create(3, 3);
+  memcpy(cam_intrinsic_mat_k_.data, camera_info_.K.data(), 9 * sizeof(double));
+  ROS_ASSERT(cv::determinant(cam_intrinsic_mat_k_) != 0);
+  dist_coefficients_ = camera_info_.D;
+  ROS_INFO("Successfully read camera info.");
+
   std::string img = this->template getParam<std::string>(nh, "img_path", "");
   img_ = cv::imread(img);
   points_3d_.clear();
   points_2d_.clear();
-  ROS_INFO("Success.");
+  ROS_INFO("Successfully read input img.");
 }
 
 void MouseCB::execute()

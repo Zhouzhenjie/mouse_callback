@@ -4,7 +4,7 @@ project(mouse_callback)
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED TRUE)
 
-add_definitions(-Wall)
+add_definitions(-Wall -Werror)
 
 find_package(catkin REQUIRED COMPONENTS
   roscpp
@@ -13,6 +13,7 @@ find_package(catkin REQUIRED COMPONENTS
   cv_bridge
   image_geometry
   nodelet
+  camera_info_manager
   message_generation
 )
 
