@@ -6,19 +6,22 @@
 
 #include <ros/ros.h>
 #include <iostream>
+#include <camera_info_manager/camera_info_manager.h>
+#include <sensor_msgs/CameraInfo.h>
 #include <cv_bridge/cv_bridge.h>
 #include <nodelet/nodelet.h>
 #include <opencv2/opencv.hpp>
 #include <string>
 #include <vector>
+#include <array>
 
 class MouseCB
 {
 public:
-  ros::NodeHandle parent_nh_;
   cv::Mat img_;
   std::vector<cv::Point2d> points_2d_;
   std::vector<cv::Point3d> points_3d_;
+  sensor_msgs::CameraInfo camera_info_;
   cv::Mat_<double> cam_intrinsic_mat_k_;
   std::vector<double> dist_coefficients_;
 
