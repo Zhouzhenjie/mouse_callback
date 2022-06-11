@@ -6,8 +6,8 @@
 
 int main(int argc, char **argv)
 {
-    ros::init(argc, argv, "mouse_callback_node");
-    ros::NodeHandle nh("~");
-    MouseCB mouse(nh);
-    return 0;
+  ros::init(argc, argv, "mouse_callback_node");
+  ros::NodeHandle nh("~");
+  MouseCB mouse(nh);
+  return 0;
 }

@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <launch>
-    <node pkg="mouse_callback" type="mouse_callback" name="mouse_callback_node">
+    <node pkg="mouse_callback" type="mouse_callback" name="mouse_callback_node" output="screen">
         <rosparam file="$(find mouse_callback)/config/mouse_callback_config.yaml" command="load" />
     </node>
 </launch>
