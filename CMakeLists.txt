@@ -16,8 +16,6 @@ find_package(catkin REQUIRED COMPONENTS
   message_generation
 )
 
-message("OpenCV version:" ${OpenCV_VERSION})
-
 catkin_package(
   INCLUDE_DIRS
   include
@@ -31,7 +29,6 @@ catkin_package(
 include_directories(
   include
   ${catkin_INCLUDE_DIRS}
-  ${OpenCV_INCLUDE_DIRS}
 )
 
 add_executable(mouse_callback
@@ -41,6 +38,5 @@ add_executable(mouse_callback
 
 target_link_libraries(mouse_callback
   ${catkin_LIBRARIES}
-  ${OpenCV_LIBS}
 )
 
