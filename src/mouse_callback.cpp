@@ -12,7 +12,7 @@ void MouseCB::onMouse(int event, int x, int y, int __attribute__((unused)) flags
   {
     std::cout << "Point" << std::to_string(count++) << ": " << cv::Point2d(x, y) << std::endl;
     p_this->points_2d_.emplace_back(cv::Point2d(x, y));
-    if (p_this->points_2d_.size() < 4)
+    if (p_this->points_2d_.size() < 6)
       return;
 
     std::cout << "===========================\n";
@@ -20,21 +20,21 @@ void MouseCB::onMouse(int event, int x, int y, int __attribute__((unused)) flags
     cv::Mat_<double> t_vec(3, 1);
 
     ros::NodeHandle nh_3d(p_this->parent_nh_, "3D_points");
-    std::vector<std::string> point_keys{ "p1", "p2", "p3", "p4" };
+    std::vector<std::string> point_keys{ "p1", "p2", "p3", "p4","p5", "p6" };
     XmlRpc::XmlRpcValue point_3d;
     for (auto& key : point_keys)
     {
       if(nh_3d.getParam(key, point_3d))
       {
-        auto x_3 = point_3d[0];
-        auto y_3 = point_3d[1];
-        auto z_3 = point_3d[2];
+        double x_3 = point_3d[0];
+        double y_3 = point_3d[1];
+        double z_3 = point_3d[2];
         p_this->points_3d_.emplace_back(cv::Point3d(x_3, y_3, z_3));
       }
     }
 
     cv::solvePnP(p_this->points_3d_, p_this->points_2d_, p_this->cam_intrinsic_mat_k_, p_this->dist_coefficients_,
-                 r_vec, t_vec, false, cv::SOLVEPNP_AP3P);
+                 r_vec, t_vec, false, cv::SOLVEPNP_EPNP);
 
     cv::Rodrigues(r_vec, r_vec);
 
